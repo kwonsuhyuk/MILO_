@@ -45,6 +45,7 @@ MVP PRD와 핵심 아키텍처를 정리했으며 Next.js 프로젝트 생성과
 - [프로젝트 컨텍스트](docs/PROJECT_CONTEXT.md)
 - [제품 요구사항](docs/PRD.md)
 - [기능 관계도](docs/FEATURE_MAP.md)
+- [디자인 시스템 초안](docs/DESIGN_SYSTEM.md)
 - [아키텍처](docs/ARCHITECTURE.md)
 - [의사결정 기록](docs/DECISIONS.md)
 - [Codex 작업 지침](AGENTS.md)
@@ -58,6 +59,7 @@ milo/
 │   ├── PROJECT_CONTEXT.md
 │   ├── PRD.md
 │   ├── FEATURE_MAP.md
+│   ├── DESIGN_SYSTEM.md
 │   ├── ARCHITECTURE.md
 │   └── DECISIONS.md
 ├── src/
