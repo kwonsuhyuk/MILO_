@@ -333,6 +333,14 @@ PDF 텍스트 자동 추출, Git 스타일 자동 비교 및 AI 변경 요약도
 
 MVP 범위는 초기 제안이며 개발 전 최종 확정한다.
 
+### MVP 인증 범위
+
+- Supabase Auth 기반 소셜 로그인만 제공한다.
+- Google과 Kakao 로그인을 우선 제공한다.
+- 이메일·비밀번호 및 매직 링크 로그인은 제공하지 않는다.
+- Naver 로그인은 MVP 이후 Custom OAuth 호환성을 검증한 뒤 추가한다.
+- 로그인 권한과 Gmail 채용 메일 분석 권한은 분리해 요청한다.
+
 ## 6. 사용자 흐름
 
 1. 사용자가 회원가입한다.
@@ -357,22 +365,31 @@ MVP 범위는 초기 제안이며 개발 전 최종 확정한다.
 
 색상, 로고, 마스코트, 디자인 시스템은 미정이다.
 
-## 8. 기술 스택 후보
+## 8. 기술 스택
 
-- Next.js
+### 확정
+
+- Next.js App Router 기반 풀스택 구성
 - TypeScript (strict)
+- Node.js 런타임
+- Supabase PostgreSQL
+- Supabase Auth
+- Supabase Storage
+- Drizzle ORM 및 Drizzle Kit
+
+MVP에서는 별도의 Express 또는 NestJS 백엔드 서버를 두지 않는다.
+AI 분석, 이메일 처리 및 OCR처럼 장시간 비동기 작업이 필요해지면
+별도 Node.js Worker와 작업 큐 도입을 검토한다.
+
+### 후보
+
 - Tailwind CSS
 - shadcn/ui
 - TanStack Query
 - Zustand
-- PostgreSQL
-- Drizzle ORM
-- Supabase Auth / Storage
 - Recharts
 
-기술 스택은 아직 최종 확정하지 않았다.
-
-실제 요구사항에 맞춰 선택한다.
+나머지 기술 스택은 실제 요구사항에 맞춰 순차적으로 선택한다.
 
 ## 9. 초기 사용자 확보 전략
 
@@ -413,8 +430,8 @@ MVP 범위는 초기 제안이며 개발 전 최종 확정한다.
 
 ## 11. 아직 결정하지 않은 사항
 
-- 최종 기술 스택
-- 인증 방식
+- 나머지 기술 스택과 라이브러리
+- 소셜 제공자 간 계정 연결 및 중복 계정 처리 정책
 - 데이터베이스 스키마
 - PDF 자동 텍스트 추출, OCR 및 Git 스타일 비교의 구체적인 구현 방식
 - 사용자별 전체 파일 저장 용량
