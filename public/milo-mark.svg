@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title description">
+  <title id="title">MILO 로고</title>
+  <desc id="description">연두색 도로 방패 안에 M을 표현한 MILO 심볼</desc>
+  <path
+    d="M18 10h64c6 0 10 4 10 10v42c0 11-7 18-16 23L50 98 24 85C15 80 8 73 8 62V20c0-6 4-10 10-10Z"
+    fill="#9DDF50"
+    stroke="#17210F"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M27 70V34l23 23 23-23v36"
+    fill="none"
+    stroke="#17210F"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

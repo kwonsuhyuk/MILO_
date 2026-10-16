@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #17210f;
+  --surface: #ffffff;
+  --surface-subtle: #f5f7f3;
+  --muted-foreground: #626d5c;
+  --border: #dce3d6;
+  --input-border: #aebaa7;
+  --primary: #9ddf50;
+  --primary-foreground: #17210f;
+  --primary-border: #78b72f;
+  --primary-soft: #eef8e4;
+  --success: #267a48;
+  --success-soft: #e5f4e9;
+  --warning: #8f5b0b;
+  --warning-soft: #fff2d8;
+  --destructive: #b53d47;
+  --destructive-soft: #fbeaec;
+  --info: #356da8;
+  --info-soft: #e9f1fa;
+  --ring: #78b72f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input-border: var(--input-border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-border: var(--primary-border);
+  --color-primary-soft: var(--primary-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-pretendard), system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-pretendard), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-color: var(--ring);
+}
+
+::selection {
+  color: var(--primary-foreground);
+  background: var(--primary);
+}

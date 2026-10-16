@@ -38,7 +38,24 @@ AI 취업 활동 인사이트, AI 기업 분석, 이메일 자동 연동, 커뮤
 
 ## 현재 상태
 
-MVP PRD와 핵심 아키텍처를 정리했으며 Next.js 프로젝트 생성과 기반 설정을 앞두고 있습니다.
+MVP PRD와 핵심 아키텍처를 정리했으며 Next.js 프로젝트 기반과 디자인 확인용
+첫 화면을 구성했습니다. 현재 화면은 기능 구현 전 색상, 타이포그래피, 기본 UI와
+데이터 표현 방식을 검토하기 위한 기준안입니다.
+
+## 로컬 실행
+
+```bash
+npm install
+npm run dev
+```
+
+품질 검사는 다음 명령으로 실행합니다.
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
 ## 문서
 
@@ -62,7 +79,17 @@ milo/
 │   ├── DESIGN_SYSTEM.md
 │   ├── ARCHITECTURE.md
 │   └── DECISIONS.md
+├── public/
+│   └── milo-mark.svg
 ├── src/
+│   └── app/
+│       ├── globals.css
+│       ├── layout.tsx
+│       └── page.tsx
+├── biome.json
+├── next.config.ts
+├── postcss.config.mjs
+├── tsconfig.json
 ├── package.json
 └── README.md
 ```

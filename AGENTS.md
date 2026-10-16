@@ -50,3 +50,13 @@
 - 기능 구현은 `feat:`, 버그 수정은 `fix:`, 문서 변경은 `docs:`, 리팩터링은
   `refactor:`, 테스트는 `test:`, 설정 및 기타 작업은 `chore:`를 사용한다.
 - 설명은 변경 목적이 드러나도록 간결한 한글로 작성한다.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
