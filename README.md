@@ -43,6 +43,7 @@ MVP 이후 단계에서 개발합니다.
 
 - [프로젝트 컨텍스트](docs/PROJECT_CONTEXT.md)
 - [제품 요구사항](docs/PRD.md)
+- [기능 관계도](docs/FEATURE_MAP.md)
 - [아키텍처](docs/ARCHITECTURE.md)
 - [의사결정 기록](docs/DECISIONS.md)
 - [Codex 작업 지침](AGENTS.md)
@@ -55,6 +56,7 @@ milo/
 ├── docs/
 │   ├── PROJECT_CONTEXT.md
 │   ├── PRD.md
+│   ├── FEATURE_MAP.md
 │   ├── ARCHITECTURE.md
 │   └── DECISIONS.md
 ├── src/
