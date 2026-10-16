@@ -16,7 +16,7 @@ MILO의 주요 기능과 데이터 연결 관계를 한눈에 확인하기 위�
 
 ```mermaid
 flowchart TD
-    USER[사용자] --> AUTH[회원가입 및 로그인]
+    USER[사용자] --> AUTH[Google·Kakao 소셜 로그인]
 
     AUTH --> APPLICATION[기업 지원 기록]
     AUTH --> DOCUMENT[제출 문서 관리]
