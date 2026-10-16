@@ -1,14 +1,51 @@
-# Milo
+# MILO (마일로)
 
-Milo is currently in the project-definition phase.
+> 이력서·자기소개서 버전부터 기업 지원 결과까지 연결해 관리하고 분석하는 취업 관리 웹서비스
 
-## Start Here
+MILO는 취업 또는 이직을 준비하는 사용자가 제출 문서, 기업 지원 과정과 결과를
+한곳에서 기록하고 다시 활용할 수 있도록 돕는 서비스입니다.
 
-1. Capture the product background in `docs/PROJECT_CONTEXT.md`.
-2. Define requirements and release criteria in `docs/PRD.md`.
-3. Document the initial technical design in `docs/ARCHITECTURE.md`.
-4. Record meaningful decisions in `docs/DECISIONS.md`.
-5. Add implementation code under `src/` after the initial scope is agreed.
+## 해결하려는 문제
+
+- 기업마다 다르게 제출한 이력서와 자기소개서의 버전을 관리하기 어렵습니다.
+- 어떤 기업에 어떤 문서를 제출했는지 시간이 지나면 확인하기 어렵습니다.
+- 여러 기업의 전형 상태, 일정과 다음 할 일이 흩어집니다.
+- 지원 결과가 누적되어도 유의미한 통계와 개선점을 파악하기 어렵습니다.
+
+## 핵심 경험
+
+1. 목적이 다른 이력서와 자기소개서를 독립된 문서로 관리합니다.
+2. 같은 문서의 수정본은 버전으로 쌓고 변경 내용을 기록합니다.
+3. 기업 지원 기록에 실제로 제출한 특정 문서 버전을 연결합니다.
+4. 전형 상태, 결과, 일정과 변경 이력을 한곳에서 관리합니다.
+5. 누적된 지원 기록을 통계와 연결 관계로 확인합니다.
+
+## MVP 범위
+
+- 회원가입 및 로그인
+- PDF 이력서·자기소개서 업로드와 버전 관리
+- 버전별 변경 내용 기록과 PDF 나란히 비교
+- 문서 없이도 생성할 수 있는 기업 지원 기록
+- 제출 문서 버전과 지원 기록 연결
+- 전형 상태, 결과와 변경 이력 관리
+- 지원별 일정과 다음 할 일 관리
+- 지원 현황 및 예정 일정 대시보드
+- 기본 합격률, 단계 전환율과 미응답률 통계
+
+AI 기업 분석, 이메일 자동 연동, 커뮤니티, 전체 관계 그래프와 데이터 내보내기는
+MVP 이후 단계에서 개발합니다.
+
+## 현재 상태
+
+프로젝트 컨텍스트와 주요 제품 정책을 정리했으며 MVP PRD를 작성하고 있습니다.
+
+## 문서
+
+- [프로젝트 컨텍스트](docs/PROJECT_CONTEXT.md)
+- [제품 요구사항](docs/PRD.md)
+- [아키텍처](docs/ARCHITECTURE.md)
+- [의사결정 기록](docs/DECISIONS.md)
+- [Codex 작업 지침](AGENTS.md)
 
 ## Repository Structure
 
