@@ -1,13 +1,26 @@
-.DS_Store
-node_modules/
-.next/
-out/
-dist/
-coverage/
+# dependencies
+/node_modules
 
-.env
-.env.*
+# Next.js build output
+/.next
+/out
+
+# production output
+/build
+/dist
+
+# local environment variables
+.env*
 !.env.example
 
+# logs and test output
 *.log
+/coverage
+
+# TypeScript
 *.tsbuildinfo
+
+# operating system and editor files
+.DS_Store
+.idea
+.vscode

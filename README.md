@@ -40,14 +40,20 @@ AI 취업 활동 인사이트, AI 기업 분석, 이메일 자동 연동, 커뮤
 
 MVP PRD와 핵심 아키텍처를 정리했으며 Next.js 프로젝트 기반과 디자인 확인용
 첫 화면을 구성했습니다. 현재 화면은 기능 구현 전 색상, 타이포그래피, 기본 UI와
-데이터 표현 방식을 검토하기 위한 기준안입니다.
+데이터 표현 방식을 검토하기 위한 기준안입니다. Supabase의 브라우저·서버 클라이언트와
+Drizzle의 서버 전용 데이터베이스 연결 기반까지 준비했으며 실제 서비스 연결 전입니다.
 
 ## 로컬 실행
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
+
+Supabase 프로젝트를 생성한 뒤 `.env.local`에 프로젝트 URL, publishable key와
+데이터베이스 연결 문자열을 입력합니다. 실제 환경변수 파일과 비밀키는 Git에
+포함하지 않습니다.
 
 품질 검사는 다음 명령으로 실행합니다.
 
@@ -82,10 +88,18 @@ milo/
 ├── public/
 │   └── milo-mark.svg
 ├── src/
-│   └── app/
-│       ├── globals.css
-│       ├── layout.tsx
-│       └── page.tsx
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── db/
+│   │   └── index.ts
+│   └── lib/
+│       └── supabase/
+│           ├── client.ts
+│           ├── config.ts
+│           └── server.ts
+├── .env.example
 ├── biome.json
 ├── next.config.ts
 ├── postcss.config.mjs
