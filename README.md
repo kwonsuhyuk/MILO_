@@ -64,6 +64,10 @@ npm run typecheck
 npm run build
 ```
 
+`main` 대상 Pull Request와 `main` Push에서는 GitHub Actions가 같은 검사를 자동으로
+실행합니다. AI를 활용한 개발 자동화와 제품 기능은 기준선과 검증 결과를
+[AI 활용 및 개선 기록](docs/AI_IMPACT.md)에 남깁니다.
+
 데이터베이스 스키마를 변경하면 마이그레이션을 생성하고 SQL을 검토한 뒤 적용합니다.
 
 ```bash
@@ -79,6 +83,7 @@ npm run db:migrate
 - [디자인 시스템 초안](docs/DESIGN_SYSTEM.md)
 - [아키텍처](docs/ARCHITECTURE.md)
 - [의사결정 기록](docs/DECISIONS.md)
+- [AI 활용 및 개선 기록](docs/AI_IMPACT.md)
 - [Codex 작업 지침](AGENTS.md)
 
 ## Repository Structure
@@ -92,7 +97,8 @@ milo/
 │   ├── FEATURE_MAP.md
 │   ├── DESIGN_SYSTEM.md
 │   ├── ARCHITECTURE.md
-│   └── DECISIONS.md
+│   ├── DECISIONS.md
+│   └── AI_IMPACT.md
 ├── public/
 │   └── milo-mark.svg
 ├── drizzle/
