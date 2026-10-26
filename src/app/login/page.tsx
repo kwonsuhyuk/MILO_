@@ -27,21 +27,30 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const errorMessage = error ? errorMessages[error] : undefined;
 
   return (
-    <main className="flex min-h-screen flex-col bg-background">
-      <header className="px-5 py-5 sm:px-8 sm:py-7">
+    <main className="grid min-h-screen bg-background lg:grid-cols-[minmax(0,1.2fr)_minmax(420px,0.8fr)]">
+      <section className="flex min-h-[46vh] flex-col bg-surface-subtle px-6 py-6 sm:px-10 sm:py-8 lg:min-h-screen lg:px-14 lg:py-10">
         <div className="flex items-center gap-2.5">
-          <Image src="/milo-mark.svg" width={32} height={32} alt="" priority />
-          <span className="text-sm font-bold tracking-[-0.03em]">MILO</span>
+          <Image src="/milo-mark.svg" width={34} height={34} alt="" priority />
+          <span className="text-[15px] font-bold tracking-[-0.03em]">MILO</span>
         </div>
-      </header>
 
-      <section className="flex flex-1 items-center justify-center px-5 pb-24 pt-10 sm:pb-32">
-        <div className="w-full max-w-[360px]">
-          <h1 className="text-center text-[26px] font-bold tracking-[-0.04em]">
-            MILO에 로그인
+        <div className="my-auto max-w-lg py-14 lg:py-0">
+          <h1 className="text-[36px] font-bold leading-[1.2] tracking-[-0.05em] sm:text-[44px]">
+            취업 준비 기록을
+            <br />
+            한곳에.
           </h1>
-          <p className="mt-2 text-center text-sm text-muted-foreground">
-            지원 기록과 제출 문서를 한곳에서 관리하세요.
+          <p className="mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-[15px]">
+            이력서와 자기소개서 버전, 지원 현황과 일정을 연결해 관리하세요.
+          </p>
+        </div>
+      </section>
+
+      <section className="flex items-center justify-center px-6 py-14 sm:px-10 lg:px-14">
+        <div className="w-full max-w-[360px]">
+          <h2 className="text-2xl font-bold tracking-[-0.04em]">로그인</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Google 계정으로 바로 시작할 수 있습니다.
           </p>
 
           {errorMessage ? (
@@ -62,10 +71,6 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               Google로 계속하기
             </button>
           </form>
-
-          <p className="mt-5 text-center text-xs leading-5 text-muted-foreground">
-            Gmail 접근 권한은 요청하지 않습니다.
-          </p>
         </div>
       </section>
     </main>
