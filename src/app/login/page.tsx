@@ -1,3 +1,4 @@
+import { ArrowRight, CalendarDays, FileText } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -34,7 +35,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <span className="text-[15px] font-bold tracking-[-0.03em]">MILO</span>
         </div>
 
-        <div className="my-auto max-w-lg py-14 lg:py-0">
+        <div className="my-auto max-w-xl py-12 lg:py-8">
           <h1 className="text-[36px] font-bold leading-[1.2] tracking-[-0.05em] sm:text-[44px]">
             취업 준비 기록을
             <br />
@@ -43,6 +44,53 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <p className="mt-5 max-w-md text-sm leading-7 text-muted-foreground sm:text-[15px]">
             이력서와 자기소개서 버전, 지원 현황과 일정을 연결해 관리하세요.
           </p>
+
+          <div className="mt-9 overflow-hidden rounded-xl border bg-background sm:mt-11">
+            <div className="flex items-center justify-between border-b px-4 py-3.5 sm:px-5">
+              <p className="text-sm font-semibold">지원 흐름</p>
+              <span className="text-xs text-muted-foreground">예시</span>
+            </div>
+
+            <div className="px-4 py-5 sm:px-5">
+              <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                <span className="inline-flex items-center gap-2 rounded-md border bg-surface px-3 py-2 font-medium">
+                  <FileText aria-hidden="true" size={15} />
+                  프론트엔드 이력서 v3
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="text-muted-foreground"
+                  size={15}
+                />
+                <span className="rounded-md border bg-surface px-3 py-2 font-medium">
+                  마일로 테크
+                </span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="text-muted-foreground"
+                  size={15}
+                />
+                <span className="rounded-md bg-primary-soft px-3 py-2 font-semibold text-success">
+                  면접 진행 중
+                </span>
+              </div>
+
+              <div className="mt-5 flex items-center justify-between gap-4 border-t pt-4">
+                <div className="flex items-center gap-2.5">
+                  <CalendarDays
+                    aria-hidden="true"
+                    className="text-muted-foreground"
+                    size={17}
+                  />
+                  <div>
+                    <p className="text-xs text-muted-foreground">다음 일정</p>
+                    <p className="mt-0.5 text-sm font-semibold">1차 면접</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">10월 28일</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
