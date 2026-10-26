@@ -1,0 +1,2265 @@
+{
+  "version": "8",
+  "dialect": "postgres",
+  "id": "fb47c4a5-ee5c-49b0-942a-79de2e9dcc9e",
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
+  "ddl": [
+    {
+      "values": ["withdrawn", "no_response", "hiring_cancelled", "other"],
+      "name": "application_close_reason",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": ["user", "email_automation", "system"],
+      "name": "application_event_actor",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "application_submitted",
+        "stage_entered",
+        "stage_passed",
+        "stage_failed",
+        "application_closed",
+        "application_reopened",
+        "reverted"
+      ],
+      "name": "application_event_type",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "in_progress",
+        "final_accepted",
+        "employment_confirmed",
+        "rejected",
+        "closed"
+      ],
+      "name": "application_result",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "screening",
+        "test_or_assignment",
+        "interview",
+        "offer_negotiation"
+      ],
+      "name": "application_stage",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": [
+        "application_deadline",
+        "test_deadline",
+        "assignment_deadline",
+        "interview",
+        "result_announcement",
+        "follow_up",
+        "other"
+      ],
+      "name": "application_task_type",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "values": ["resume", "cover_letter", "combined"],
+      "name": "document_type",
+      "entityType": "enums",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "application_documents",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "application_events",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "application_tasks",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "applications",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "companies",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "document_versions",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "documents",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": true,
+      "name": "profiles",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "application_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "document_version_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "linked_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "application_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "related_task_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "reverted_event_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_event_type",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_event_actor",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'user'",
+      "generated": null,
+      "identity": null,
+      "name": "actor",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_stage",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "previous_stage",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_stage",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "next_stage",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_result",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "previous_result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_result",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "next_result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_close_reason",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "previous_close_reason",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "application_close_reason",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "next_close_reason",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "occurred_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'{}'",
+      "generated": null,
+      "identity": null,
+      "name": "metadata",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "application_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "application_task_type",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "title",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "scheduled_on",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "time(0)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "scheduled_time",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "time_zone",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "completed_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "note",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "company_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "position_title",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "applied_on",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "job_posting_url",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "job_posting_text",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "application_stage",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'screening'",
+      "generated": null,
+      "identity": null,
+      "name": "current_stage",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "application_result",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'in_progress'",
+      "generated": null,
+      "identity": null,
+      "name": "overall_result",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "application_close_reason",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "close_reason",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "note",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "normalized_name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "note",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "archived_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "document_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "version_number",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "label",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "change_summary",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "storage_path",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "original_file_name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "mime_type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "file_size_bytes",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "varchar(64)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "checksum_sha256",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "file_deleted_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "user_id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "document_type",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "type",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "archived_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "type": "varchar(80)",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "display_name",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "type": "varchar(100)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'Asia/Seoul'",
+      "generated": null,
+      "identity": null,
+      "name": "time_zone",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_documents_user_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_version_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_documents_version_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "application_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "occurred_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_events_timeline_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_events_user_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "related_task_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_events_related_task_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "reverted_event_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_events_reverted_event_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "completed_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "scheduled_on",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "scheduled_time",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_tasks_next_action_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "application_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "application_tasks_application_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "updated_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "applications_user_updated_at_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "current_stage",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "overall_result",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "applications_user_status_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "company_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "applications_company_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "normalized_name",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "companies_user_name_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "updated_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "companies_user_updated_at_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "version_number",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "document_versions_document_version_unique",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "document_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "document_versions_document_id_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "nameExplicit": true,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "updated_at",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "name": "documents_user_updated_at_idx",
+      "entityType": "indexes",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_documents_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["application_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "applications",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_documents_application_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["document_version_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "document_versions",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_documents_version_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_events_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["application_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "applications",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_events_application_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["related_task_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "application_tasks",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "application_events_task_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["reverted_event_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "application_events",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "application_events_reverted_event_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_tasks_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["application_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "applications",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "application_tasks_application_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "applications_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["company_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "companies",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "NO ACTION",
+      "name": "applications_company_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "companies_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "document_versions_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["document_id", "user_id"],
+      "schemaTo": "public",
+      "tableTo": "documents",
+      "columnsTo": ["id", "user_id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "document_versions_document_owner_fk",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["user_id"],
+      "schemaTo": "public",
+      "tableTo": "profiles",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "documents_user_id_profiles_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "nameExplicit": false,
+      "columns": ["id"],
+      "schemaTo": "auth",
+      "tableTo": "users",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "name": "profiles_id_users_id_fkey",
+      "entityType": "fks",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "columns": ["application_id", "document_version_id"],
+      "nameExplicit": false,
+      "name": "application_documents_pkey",
+      "entityType": "pks",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "application_events_pkey",
+      "schema": "public",
+      "table": "application_events",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "application_tasks_pkey",
+      "schema": "public",
+      "table": "application_tasks",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "applications_pkey",
+      "schema": "public",
+      "table": "applications",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "companies_pkey",
+      "schema": "public",
+      "table": "companies",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "document_versions_pkey",
+      "schema": "public",
+      "table": "document_versions",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "documents_pkey",
+      "schema": "public",
+      "table": "documents",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "profiles_pkey",
+      "schema": "public",
+      "table": "profiles",
+      "entityType": "pks"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "application_events_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "application_tasks_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "applications_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "companies_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "document_versions_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "nameExplicit": true,
+      "columns": ["id", "user_id"],
+      "nullsNotDistinct": false,
+      "name": "documents_id_user_id_unique",
+      "entityType": "uniques",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "value": "\"type\" <> 'reverted' or \"reverted_event_id\" is not null",
+      "name": "application_events_revert_target_required",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "value": "length(trim(\"title\")) > 0",
+      "name": "application_tasks_title_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "value": "length(trim(\"time_zone\")) > 0",
+      "name": "application_tasks_time_zone_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "value": "length(trim(\"position_title\")) > 0",
+      "name": "applications_position_title_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "value": "(\n        (\"overall_result\" = 'closed' and \"close_reason\" is not null)\n        or\n        (\"overall_result\" <> 'closed' and \"close_reason\" is null)\n      )",
+      "name": "applications_close_reason_consistency",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "value": "length(trim(\"name\")) > 0",
+      "name": "companies_name_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "value": "length(trim(\"normalized_name\")) > 0",
+      "name": "companies_normalized_name_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "value": "\"version_number\" > 0",
+      "name": "document_versions_version_positive",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "value": "length(trim(\"label\")) > 0",
+      "name": "document_versions_label_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "value": "\"mime_type\" is null or \"mime_type\" = 'application/pdf'",
+      "name": "document_versions_pdf_mime_type",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "value": "\"file_size_bytes\" is null or (\"file_size_bytes\" > 0 and \"file_size_bytes\" <= 10485760)",
+      "name": "document_versions_file_size_limit",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "value": "length(trim(\"name\")) > 0",
+      "name": "documents_name_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "value": "length(trim(\"time_zone\")) > 0",
+      "name": "profiles_time_zone_not_blank",
+      "entityType": "checks",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_documents\".\"user_id\"",
+      "withCheck": null,
+      "name": "application_documents_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"application_documents\".\"user_id\"",
+      "name": "application_documents_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_documents\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"application_documents\".\"user_id\"",
+      "name": "application_documents_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_documents\".\"user_id\"",
+      "withCheck": null,
+      "name": "application_documents_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_events\".\"user_id\"",
+      "withCheck": null,
+      "name": "application_events_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"application_events\".\"user_id\"",
+      "name": "application_events_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_events"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_tasks\".\"user_id\"",
+      "withCheck": null,
+      "name": "application_tasks_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"application_tasks\".\"user_id\"",
+      "name": "application_tasks_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_tasks\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"application_tasks\".\"user_id\"",
+      "name": "application_tasks_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"application_tasks\".\"user_id\"",
+      "withCheck": null,
+      "name": "application_tasks_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "application_tasks"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"applications\".\"user_id\"",
+      "withCheck": null,
+      "name": "applications_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"applications\".\"user_id\"",
+      "name": "applications_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"applications\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"applications\".\"user_id\"",
+      "name": "applications_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"applications\".\"user_id\"",
+      "withCheck": null,
+      "name": "applications_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "applications"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"companies\".\"user_id\"",
+      "withCheck": null,
+      "name": "companies_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"companies\".\"user_id\"",
+      "name": "companies_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"companies\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"companies\".\"user_id\"",
+      "name": "companies_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"companies\".\"user_id\"",
+      "withCheck": null,
+      "name": "companies_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "companies"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"document_versions\".\"user_id\"",
+      "withCheck": null,
+      "name": "document_versions_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"document_versions\".\"user_id\"",
+      "name": "document_versions_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"document_versions\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"document_versions\".\"user_id\"",
+      "name": "document_versions_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"document_versions\".\"user_id\"",
+      "withCheck": null,
+      "name": "document_versions_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "document_versions"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"documents\".\"user_id\"",
+      "withCheck": null,
+      "name": "documents_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "INSERT",
+      "roles": ["authenticated"],
+      "using": null,
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"documents\".\"user_id\"",
+      "name": "documents_insert_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"documents\".\"user_id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"documents\".\"user_id\"",
+      "name": "documents_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "DELETE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"documents\".\"user_id\"",
+      "withCheck": null,
+      "name": "documents_delete_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "documents"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "SELECT",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"profiles\".\"id\"",
+      "withCheck": null,
+      "name": "profiles_select_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "profiles"
+    },
+    {
+      "as": "PERMISSIVE",
+      "for": "UPDATE",
+      "roles": ["authenticated"],
+      "using": "(select auth.uid()) is not null and (select auth.uid()) = \"profiles\".\"id\"",
+      "withCheck": "(select auth.uid()) is not null and (select auth.uid()) = \"profiles\".\"id\"",
+      "name": "profiles_update_own",
+      "entityType": "policies",
+      "schema": "public",
+      "table": "profiles"
+    }
+  ],
+  "renames": []
+}

@@ -41,7 +41,8 @@ AI 취업 활동 인사이트, AI 기업 분석, 이메일 자동 연동, 커뮤
 MVP PRD와 핵심 아키텍처를 정리했으며 Next.js 프로젝트 기반과 디자인 확인용
 첫 화면을 구성했습니다. 현재 화면은 기능 구현 전 색상, 타이포그래피, 기본 UI와
 데이터 표현 방식을 검토하기 위한 기준안입니다. Supabase의 브라우저·서버 클라이언트와
-Drizzle의 서버 전용 데이터베이스 연결 기반까지 준비했으며 실제 서비스 연결 전입니다.
+Drizzle의 서버 전용 데이터베이스 연결 기반을 구성했습니다. Supabase에는 MVP 핵심
+테이블, 소유자 전용 RLS 정책과 프로필 생성 트리거까지 첫 마이그레이션을 적용했습니다.
 
 ## 로컬 실행
 
@@ -61,6 +62,13 @@ Supabase 프로젝트를 생성한 뒤 `.env.local`에 프로젝트 URL, publish
 npm run lint
 npm run typecheck
 npm run build
+```
+
+데이터베이스 스키마를 변경하면 마이그레이션을 생성하고 SQL을 검토한 뒤 적용합니다.
+
+```bash
+npm run db:generate
+npm run db:migrate
 ```
 
 ## 문서
@@ -87,12 +95,15 @@ milo/
 │   └── DECISIONS.md
 ├── public/
 │   └── milo-mark.svg
+├── drizzle/
+│   └── ...
 ├── src/
 │   ├── app/
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   └── page.tsx
 │   ├── db/
+│   │   ├── schema/
 │   │   └── index.ts
 │   └── lib/
 │       └── supabase/
@@ -101,6 +112,7 @@ milo/
 │           └── server.ts
 ├── .env.example
 ├── biome.json
+├── drizzle.config.ts
 ├── next.config.ts
 ├── postcss.config.mjs
 ├── tsconfig.json
