@@ -4,21 +4,32 @@ import { redirect } from "next/navigation";
 import { getSiteUrl } from "@/lib/site-url";
 import { createClient } from "@/lib/supabase/server";
 
-export async function signInWithGoogle() {
+async function signInWithProvider(
+  provider: "google" | "kakao",
+  errorCode: string,
+) {
   const supabase = await createClient();
   const siteUrl = await getSiteUrl();
   const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: "google",
+    provider,
     options: {
       redirectTo: `${siteUrl}/auth/callback`,
     },
   });
 
   if (error || !data.url) {
-    redirect("/login?error=oauth_start_failed");
+    redirect(`/login?error=${errorCode}`);
   }
 
   redirect(data.url);
+}
+
+export async function signInWithGoogle() {
+  return signInWithProvider("google", "oauth_google_start_failed");
+}
+
+export async function signInWithKakao() {
+  return signInWithProvider("kakao", "oauth_kakao_start_failed");
 }
 
 export async function signOut() {

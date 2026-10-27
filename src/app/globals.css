@@ -20,6 +20,8 @@
   --destructive-soft: #fbeaec;
   --info: #356da8;
   --info-soft: #e9f1fa;
+  --kakao: #fee500;
+  --kakao-foreground: #191919;
   --ring: #78b72f;
 }
 
@@ -43,6 +45,8 @@
   --color-destructive-soft: var(--destructive-soft);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
+  --color-kakao: var(--kakao);
+  --color-kakao-foreground: var(--kakao-foreground);
   --color-ring: var(--ring);
   --font-sans: var(--font-pretendard), system-ui, sans-serif;
 }

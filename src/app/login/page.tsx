@@ -2,14 +2,17 @@ import { ArrowRight, CalendarDays, FileText } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { signInWithGoogle } from "./actions";
+import { signInWithGoogle, signInWithKakao } from "./actions";
 import { GoogleIcon } from "./google-icon";
+import { KakaoIcon } from "./kakao-icon";
 
 const errorMessages: Record<string, string> = {
-  oauth_start_failed:
+  oauth_google_start_failed:
     "Google 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+  oauth_kakao_start_failed:
+    "Kakao 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.",
   oauth_callback_failed:
-    "Google 로그인 정보를 확인하지 못했습니다. 다시 시도해 주세요.",
+    "로그인 정보를 확인하지 못했습니다. 다시 시도해 주세요.",
 };
 
 type LoginPageProps = {
@@ -98,7 +101,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <div className="w-full max-w-[360px]">
           <h2 className="text-2xl font-bold tracking-[-0.04em]">로그인</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Google 계정으로 바로 시작할 수 있습니다.
+            Google 또는 Kakao 계정으로 시작할 수 있습니다.
           </p>
 
           {errorMessage ? (
@@ -110,15 +113,27 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </p>
           ) : null}
 
-          <form action={signInWithGoogle} className="mt-8">
-            <button
-              type="submit"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-input-border bg-background px-4 text-sm font-semibold outline-offset-2 transition-colors hover:bg-surface-subtle focus-visible:outline-2"
-            >
-              <GoogleIcon />
-              Google로 계속하기
-            </button>
-          </form>
+          <div className="mt-8 space-y-3">
+            <form action={signInWithGoogle}>
+              <button
+                type="submit"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg border border-input-border bg-background px-4 text-sm font-semibold outline-offset-2 transition-colors hover:bg-surface-subtle focus-visible:outline-2"
+              >
+                <GoogleIcon />
+                Google로 계속하기
+              </button>
+            </form>
+
+            <form action={signInWithKakao}>
+              <button
+                type="submit"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg bg-kakao px-4 text-sm font-semibold text-kakao-foreground outline-offset-2 transition-opacity hover:opacity-90 focus-visible:outline-2"
+              >
+                <KakaoIcon />
+                Kakao로 계속하기
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
