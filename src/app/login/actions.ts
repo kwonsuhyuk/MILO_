@@ -6,10 +6,11 @@ import { createClient } from "@/lib/supabase/server";
 
 export async function signInWithGoogle() {
   const supabase = await createClient();
+  const siteUrl = await getSiteUrl();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${getSiteUrl()}/auth/callback`,
+      redirectTo: `${siteUrl}/auth/callback`,
     },
   });
 
