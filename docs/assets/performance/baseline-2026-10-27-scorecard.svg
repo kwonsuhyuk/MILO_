@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">MILO Lighthouse 성능 기준선</title>
+  <desc id="desc">2026년 10월 27일 측정한 모바일과 데스크톱 Lighthouse 점수와 핵심 성능 지표</desc>
+  <rect width="1200" height="720" fill="#f5f7f3"/>
+  <g font-family="Pretendard, Apple SD Gothic Neo, sans-serif" fill="#17210f">
+    <text x="72" y="82" font-size="22" font-weight="700">MILO</text>
+    <text x="72" y="132" font-size="36" font-weight="700">Lighthouse 성능 기준선</text>
+    <text x="72" y="166" font-size="17" fill="#626d5c">2026-10-27 · c69ef21 · Local production build · Lighthouse 13.5.0</text>
+
+    <rect x="72" y="216" width="508" height="390" rx="16" fill="#ffffff" stroke="#dce3d6"/>
+    <text x="108" y="264" font-size="22" font-weight="700">Mobile</text>
+    <circle cx="502" cy="270" r="47" fill="#eef8e4"/>
+    <text x="502" y="280" text-anchor="middle" font-size="31" font-weight="700">75</text>
+    <text x="502" y="307" text-anchor="middle" font-size="12" fill="#626d5c">PERFORMANCE</text>
+
+    <text x="108" y="351" font-size="15" fill="#626d5c">FCP</text>
+    <text x="314" y="351" text-anchor="end" font-size="18" font-weight="700">0.8s</text>
+    <text x="350" y="351" font-size="15" fill="#626d5c">LCP</text>
+    <text x="542" y="351" text-anchor="end" font-size="18" font-weight="700" fill="#b53d47">12.1s</text>
+    <line x1="108" y1="378" x2="542" y2="378" stroke="#dce3d6"/>
+    <text x="108" y="420" font-size="15" fill="#626d5c">TBT</text>
+    <text x="314" y="420" text-anchor="end" font-size="18" font-weight="700">30ms</text>
+    <text x="350" y="420" font-size="15" fill="#626d5c">CLS</text>
+    <text x="542" y="420" text-anchor="end" font-size="18" font-weight="700">0</text>
+    <line x1="108" y1="447" x2="542" y2="447" stroke="#dce3d6"/>
+    <text x="108" y="490" font-size="15" fill="#626d5c">Accessibility</text>
+    <text x="250" y="490" text-anchor="end" font-size="17" font-weight="700">100</text>
+    <text x="285" y="490" font-size="15" fill="#626d5c">Best practices</text>
+    <text x="425" y="490" text-anchor="end" font-size="17" font-weight="700">96</text>
+    <text x="462" y="490" font-size="15" fill="#626d5c">SEO</text>
+    <text x="542" y="490" text-anchor="end" font-size="17" font-weight="700">100</text>
+    <text x="108" y="554" font-size="14" fill="#626d5c">Moto G Power (2022) emulation</text>
+
+    <rect x="620" y="216" width="508" height="390" rx="16" fill="#ffffff" stroke="#dce3d6"/>
+    <text x="656" y="264" font-size="22" font-weight="700">Desktop</text>
+    <circle cx="1050" cy="270" r="47" fill="#eef8e4"/>
+    <text x="1050" y="280" text-anchor="middle" font-size="31" font-weight="700">90</text>
+    <text x="1050" y="307" text-anchor="middle" font-size="12" fill="#626d5c">PERFORMANCE</text>
+
+    <text x="656" y="351" font-size="15" fill="#626d5c">FCP</text>
+    <text x="862" y="351" text-anchor="end" font-size="18" font-weight="700">0.2s</text>
+    <text x="898" y="351" font-size="15" fill="#626d5c">LCP</text>
+    <text x="1090" y="351" text-anchor="end" font-size="18" font-weight="700">2.1s</text>
+    <line x1="656" y1="378" x2="1090" y2="378" stroke="#dce3d6"/>
+    <text x="656" y="420" font-size="15" fill="#626d5c">TBT</text>
+    <text x="862" y="420" text-anchor="end" font-size="18" font-weight="700">0ms</text>
+    <text x="898" y="420" font-size="15" fill="#626d5c">CLS</text>
+    <text x="1090" y="420" text-anchor="end" font-size="18" font-weight="700">0</text>
+    <line x1="656" y1="447" x2="1090" y2="447" stroke="#dce3d6"/>
+    <text x="656" y="490" font-size="15" fill="#626d5c">Accessibility</text>
+    <text x="798" y="490" text-anchor="end" font-size="17" font-weight="700">100</text>
+    <text x="833" y="490" font-size="15" fill="#626d5c">Best practices</text>
+    <text x="973" y="490" text-anchor="end" font-size="17" font-weight="700">96</text>
+    <text x="1010" y="490" font-size="15" fill="#626d5c">SEO</text>
+    <text x="1090" y="490" text-anchor="end" font-size="17" font-weight="700">100</text>
+    <text x="656" y="554" font-size="14" fill="#626d5c">Lighthouse desktop preset</text>
+
+    <text x="72" y="664" font-size="15" fill="#626d5c">개선 후 동일 조건으로 재측정해 점수보다 LCP·TBT·CLS 변화를 함께 비교합니다.</text>
+  </g>
+</svg>

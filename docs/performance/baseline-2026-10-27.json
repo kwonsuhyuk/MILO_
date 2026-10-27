@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-10-27T17:36:00+09:00",
+  "commit": "c69ef219cfc7e14bd23e76269e8d4377957b93ea",
+  "route": "/login",
+  "environment": {
+    "mode": "local-production-build",
+    "command": "next start",
+    "lighthouseVersion": "13.5.0",
+    "runsPerDevice": 1,
+    "note": "Vercel Preview deployment protection redirected headless Lighthouse to Vercel login, so the current branch was measured through its local production build."
+  },
+  "mobile": {
+    "fetchTime": "2026-10-27T08:36:38.991Z",
+    "emulation": "Moto G Power (2022), Android 11",
+    "scores": {
+      "performance": 75,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "fcpMs": 763,
+      "lcpMs": 12088,
+      "tbtMs": 34,
+      "cls": 0,
+      "speedIndexMs": 763,
+      "ttfbMs": 104
+    }
+  },
+  "desktop": {
+    "fetchTime": "2026-10-27T08:36:55.828Z",
+    "emulation": "Lighthouse desktop preset",
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "fcpMs": 217,
+      "lcpMs": 2057,
+      "tbtMs": 0,
+      "cls": 0,
+      "speedIndexMs": 217,
+      "ttfbMs": 15
+    }
+  }
+}
