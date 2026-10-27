@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 async function signInWithProvider(
   provider: "google" | "kakao",
   errorCode: string,
+  scopes?: string,
 ) {
   const supabase = await createClient();
   const siteUrl = await getSiteUrl();
@@ -14,6 +15,7 @@ async function signInWithProvider(
     provider,
     options: {
       redirectTo: `${siteUrl}/auth/callback`,
+      scopes,
     },
   });
 
@@ -29,7 +31,11 @@ export async function signInWithGoogle() {
 }
 
 export async function signInWithKakao() {
-  return signInWithProvider("kakao", "oauth_kakao_start_failed");
+  return signInWithProvider(
+    "kakao",
+    "oauth_kakao_start_failed",
+    "profile_nickname",
+  );
 }
 
 export async function signOut() {
