@@ -2,7 +2,8 @@ import { ArrowRight, CalendarDays, FileText } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { signInWithGoogle, signInWithKakao } from "./actions";
+import { signInWithGithub, signInWithGoogle, signInWithKakao } from "./actions";
+import { GitHubIcon } from "./github-icon";
 import { GoogleIcon } from "./google-icon";
 import { KakaoIcon } from "./kakao-icon";
 
@@ -11,6 +12,8 @@ const errorMessages: Record<string, string> = {
     "Google 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.",
   oauth_kakao_start_failed:
     "Kakao 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.",
+  oauth_github_start_failed:
+    "GitHub 로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.",
   oauth_callback_failed:
     "로그인 정보를 확인하지 못했습니다. 다시 시도해 주세요.",
 };
@@ -101,7 +104,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         <div className="w-full max-w-[360px]">
           <h2 className="text-2xl font-bold tracking-[-0.04em]">로그인</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Google 또는 Kakao 계정으로 시작할 수 있습니다.
+            Google, Kakao 또는 GitHub 계정으로 시작할 수 있습니다.
           </p>
 
           {errorMessage ? (
@@ -131,6 +134,16 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               >
                 <KakaoIcon />
                 Kakao로 계속하기
+              </button>
+            </form>
+
+            <form action={signInWithGithub}>
+              <button
+                type="submit"
+                className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-lg bg-foreground px-4 text-sm font-semibold text-background outline-offset-2 transition-opacity hover:opacity-90 focus-visible:outline-2"
+              >
+                <GitHubIcon />
+                GitHub로 계속하기
               </button>
             </form>
           </div>

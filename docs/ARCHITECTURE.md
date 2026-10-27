@@ -43,7 +43,7 @@ AI 분석, 이메일 처리, OCR처럼 요청 시간이 길거나 재시도가 �
 | 언어 | TypeScript strict | 확정 |
 | 서버 런타임 | Node.js | 확정 |
 | 데이터베이스 | Supabase PostgreSQL | 확정 |
-| 인증 | Supabase Auth 기반 Google·Kakao OAuth | 확정 |
+| 인증 | Supabase Auth 기반 Google·Kakao·GitHub OAuth | 확정 |
 | 파일 저장 | Supabase Storage | 확정 |
 | ORM 및 마이그레이션 | Drizzle ORM, Drizzle Kit | 확정 |
 | 스타일링 | Tailwind CSS | 확정 |
@@ -62,7 +62,7 @@ AI 분석, 이메일 처리, OCR처럼 요청 시간이 길거나 재시도가 �
 | Domain/Application Logic | 지원 상태 변경, 일정, 통계 등 핵심 규칙 | UI와 DB 접근 코드에 규칙을 중복하지 않는다. |
 | Drizzle ORM | PostgreSQL 스키마, 쿼리와 타입 안전성 | 서버 전용으로 사용한다. |
 | Drizzle Kit | SQL 마이그레이션 생성 및 변경 이력 관리 | 생성된 마이그레이션을 Git에 포함한다. |
-| Supabase Auth | Google·Kakao OAuth, 세션과 사용자 식별 | 이메일·비밀번호 로그인은 제공하지 않는다. |
+| Supabase Auth | Google·Kakao·GitHub OAuth, 세션과 사용자 식별 | 이메일·비밀번호 로그인은 제공하지 않는다. |
 | Supabase PostgreSQL | 지원, 문서 메타데이터, 일정과 이벤트 저장 | 원본 PDF는 저장하지 않는다. |
 | Supabase Storage | 이력서와 자기소개서 PDF 비공개 저장 | 영구 공개 URL을 제공하지 않는다. |
 | Tailwind CSS | 반응형 레이아웃과 디자인 토큰 기반 스타일링 | 임의 값 남용을 피하고 공통 토큰을 우선한다. |
@@ -83,7 +83,7 @@ AI 분석, 이메일 처리, OCR처럼 요청 시간이 길거나 재시도가 �
 
 ### 소셜 로그인
 
-1. 사용자가 Google 또는 Kakao 로그인을 선택한다.
+1. 사용자가 Google, Kakao 또는 GitHub 로그인을 선택한다.
 2. Supabase Auth가 해당 제공자의 OAuth 인증 화면으로 이동시킨다.
 3. 인증이 완료되면 Next.js 콜백에서 코드를 세션으로 교환한다.
 4. 서버는 Supabase 사용자 ID를 기준으로 MILO 사용자 프로필을 조회하거나 생성한다.
@@ -91,7 +91,7 @@ AI 분석, 이메일 처리, OCR처럼 요청 시간이 길거나 재시도가 �
 
 로그인에는 식별에 필요한 최소 범위만 요청한다. Google 로그인과 Gmail 채용 메일 분석은
 서로 다른 권한으로 취급하며 로그인 시 Gmail 읽기 권한을 요청하지 않는다.
-Naver 로그인은 MVP 이후에 별도 기술 검증을 거쳐 추가한다.
+Naver 로그인은 MVP 범위에서 제외한다.
 
 ### 데이터 조회 및 변경
 

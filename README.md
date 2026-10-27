@@ -22,7 +22,7 @@ MILO는 취업 또는 이직을 준비하는 사용자가 제출 문서, 기업 
 
 ## MVP 범위
 
-- Google·Kakao 소셜 로그인
+- Google·Kakao·GitHub 소셜 로그인
 - PDF 이력서·자기소개서 업로드와 버전 관리
 - 버전별 변경 내용 기록
 - 선택한 두 PDF 나란히 비교(MVP 권장)

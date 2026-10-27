@@ -5,7 +5,7 @@ import { getSiteUrl } from "@/lib/site-url";
 import { createClient } from "@/lib/supabase/server";
 
 async function signInWithProvider(
-  provider: "google" | "kakao",
+  provider: "github" | "google" | "kakao",
   errorCode: string,
 ) {
   const supabase = await createClient();
@@ -30,6 +30,10 @@ export async function signInWithGoogle() {
 
 export async function signInWithKakao() {
   return signInWithProvider("kakao", "oauth_kakao_start_failed");
+}
+
+export async function signInWithGithub() {
+  return signInWithProvider("github", "oauth_github_start_failed");
 }
 
 export async function signOut() {
